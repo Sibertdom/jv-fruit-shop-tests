@@ -16,7 +16,7 @@ public class DataConverterImpl implements DataConverter {
             throw new IllegalArgumentException("Lines list cannot be null or empty");
         }
         return lines.stream()
-                .skip(1) // Пропускаємо рядок заголовку (type,fruit,quantity)
+                .skip(1)
                 .filter(line -> line != null && !line.isBlank())
                 .map(this::parseLineToTransaction)
                 .collect(Collectors.toList());

@@ -1,12 +1,19 @@
 package core.basesyntax.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import core.basesyntax.db.Storage;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class ReportGeneratorImplTest {
-    private final ReportGenerator reportGenerator = new ReportGeneratorImpl();
+    private static ReportGenerator reportGenerator;
+
+    @BeforeAll
+    static void beforeAll() {
+        reportGenerator = new ReportGeneratorImpl();
+    }
 
     @AfterEach
     void tearDown() {
@@ -24,13 +31,13 @@ class ReportGeneratorImplTest {
                 + "apple,90";
         String actual = reportGenerator.getReport();
 
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
     void getReport_emptyStorage_ok() {
         String expected = "fruit,quantity";
         String actual = reportGenerator.getReport();
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }
